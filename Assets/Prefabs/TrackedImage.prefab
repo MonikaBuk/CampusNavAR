@@ -3561,6 +3561,7 @@ GameObject:
   - component: {fileID: 8747857876694509708}
   - component: {fileID: 6546821936056276829}
   - component: {fileID: 1037913622858768248}
+  - component: {fileID: 1866394854180657861}
   m_Layer: 0
   m_Name: Door2X241
   m_TagString: Untagged
@@ -3577,7 +3578,7 @@ Transform:
   m_GameObject: {fileID: 1982501723955617817}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.17, y: 0, z: -32.94}
+  m_LocalPosition: {x: -17.13, y: 0, z: -32.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3670,6 +3671,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qrCodeID: 2X241
+--- !u!114 &1866394854180657861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982501723955617817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e7fb857c07dde409bc9694b402cfee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2061711985068631771
 GameObject:
   m_ObjectHideFlags: 0
@@ -4155,6 +4168,7 @@ GameObject:
   - component: {fileID: 3706166152861398716}
   - component: {fileID: 9153670281825209595}
   - component: {fileID: 5117219219456559438}
+  - component: {fileID: 7963927526983126080}
   m_Layer: 0
   m_Name: Door2X112
   m_TagString: Untagged
@@ -4264,6 +4278,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qrCodeID: 2X112
+--- !u!114 &7963927526983126080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2173879234398891625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e7fb857c07dde409bc9694b402cfee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2211203219117487429
 GameObject:
   m_ObjectHideFlags: 0
@@ -11659,6 +11685,7 @@ GameObject:
   - component: {fileID: 1062889027163105585}
   - component: {fileID: 2043183623695148165}
   - component: {fileID: 4210547279968212524}
+  - component: {fileID: 454074114738509948}
   m_Layer: 0
   m_Name: Door2X241A
   m_TagString: Untagged
@@ -11675,7 +11702,7 @@ Transform:
   m_GameObject: {fileID: 5980801708669964853}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.18, y: 0, z: -16.08}
+  m_LocalPosition: {x: -17.44, y: 0, z: -15.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11768,6 +11795,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qrCodeID: 2X241A
+--- !u!114 &454074114738509948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5980801708669964853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e7fb857c07dde409bc9694b402cfee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6060097003392710505
 GameObject:
   m_ObjectHideFlags: 0
@@ -11983,7 +12022,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 7d11e0995f3e0774195e032e5d39ea90, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a07bb5e76be26314f8ee3c2a7f4c4ee0, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &6291252548303201160
 GameObject:

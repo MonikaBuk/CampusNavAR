@@ -13,10 +13,13 @@ public class NavigationManager : MonoBehaviour
 
     void Start()
     {
+        // Retrieve NewIndorNavigation component from the scene
         GameObject navigationObject = GameObject.FindWithTag("Nav");
         newIndorNavigation = navigationObject.GetComponent<NewIndorNavigation>();
+
+        // Populate the dropdown and add listener to the value change event
         PopulateDropdown();
-        targetDropdown.onValueChanged.AddListener(delegate { SetTarget(); });
+        targetDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
     }
 
     void PopulateDropdown()
@@ -24,60 +27,35 @@ public class NavigationManager : MonoBehaviour
         targetDropdown.ClearOptions();
         List<string> options = new List<string>();
 
+        // Populate the dropdown with door QR codes and lookup dictionary
         foreach (Door door in doors)
         {
             if (!string.IsNullOrEmpty(door.qrCodeID))
             {
                 options.Add(door.qrCodeID);
-                doorLookup[door.qrCodeID] = door; 
+                doorLookup[door.qrCodeID] = door;
             }
         }
 
         targetDropdown.AddOptions(options);
     }
 
-    void SetTarget()
-    {
-        string selectedQrCode = targetDropdown.options[targetDropdown.value].text;
-
-        if (doorLookup.TryGetValue(selectedQrCode, out Door selectedDoor))
-        {
-            
-
-            if (selectedDoor != null)
-            {
-                NavigationTarget navTarget = selectedDoor.GetComponent<NavigationTarget>();
-
-                if (navTarget == null)
-                {
-                    navTarget = selectedDoor.gameObject.AddComponent<NavigationTarget>(); // Add NavigationTarget
-                }
-
-                Debug.Log($"NavigationTarget set on room: {selectedDoor.name} (via QR Code: {selectedQrCode})");
-            }
-            else
-            {
-                Debug.LogError("Selected door has no parent room!");
-            }
-        }
-        else
-        {
-            Debug.LogError("Selected QR Code not found in door lookup!");
-        }
-    }
-
-    public void OnDropdownValueChanged(int index)
+    // Handle dropdown value change and update the navigation target
+    void OnDropdownValueChanged(int index)
     {
         string selectedQrCode = targetDropdown.options[index].text;
 
         if (doorLookup.TryGetValue(selectedQrCode, out Door selectedDoor))
         {
-            // Update the navigation target in NewIndorNavigation
+            // Set the navigation target in NewIndorNavigation
             newIndorNavigation.SetNavigationTarget(selectedDoor.transform);
+
+            // Log the selected QR code and door
+            Debug.Log($"Navigation target updated to: {selectedDoor.name} (via QR Code: {selectedQrCode})");
         }
         else
         {
-            Debug.LogError($" QR Code {selectedQrCode} not found!");
+            Debug.LogError($"QR Code {selectedQrCode} not found in door lookup!");
         }
     }
 }

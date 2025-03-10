@@ -11,8 +11,8 @@ public class ARMarkerNavigation : MonoBehaviour
     void Start()
     {
         // Store destinations (assign GameObjects in Unity)
-        destinations.Add("QR_Door1", GameObject.Find("QR_Door1"));
-        destinations.Add("QR_RoomA", GameObject.Find("QR_RoomA"));
+        destinations.Add("Cafee", GameObject.Find("Cafee"));
+        destinations.Add("FronLeftDoor", GameObject.Find("FronLeftDoor"));
     }
 
     private void OnEnable() => imageManager.trackedImagesChanged += OnImageChanged;

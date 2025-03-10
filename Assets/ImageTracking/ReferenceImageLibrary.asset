@@ -21,19 +21,29 @@ MonoBehaviour:
       m_GuidLow: 4827773292976760578
       m_GuidHigh: 2392814934097511070
     m_SerializedTextureGuid:
-      m_GuidLow: 8594135670002325040
-      m_GuidHigh: 3161912548513682424
+      m_GuidLow: 4108545304949089821
+      m_GuidHigh: 11737551080937688474
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: Cartoon-Cat
+    m_Name: FronLeftDoor
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 5607083286395728397
       m_GuidHigh: 305820509867543485
     m_SerializedTextureGuid:
-      m_GuidLow: 0
-      m_GuidHigh: 0
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: 
+      m_GuidLow: 7639333254092992171
+      m_GuidHigh: 4416014298936585928
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: Caffee
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5446281998978522085
+      m_GuidHigh: 16321533160647375016
+    m_SerializedTextureGuid:
+      m_GuidLow: 4545409239812460469
+      m_GuidHigh: 14414317778959343865
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: FrontRightDoor
     m_Texture: {fileID: 0}

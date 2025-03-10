@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.XR.ARFoundation;
 using System.Collections.Generic;
 using System.Linq;
-
+using UnityEngine.InputSystem;
 
 public class NewIndorNavigation : MonoBehaviour
 {
@@ -13,29 +13,46 @@ public class NewIndorNavigation : MonoBehaviour
     [SerializeField] private ARTrackedImageManager m_TrackedImageManager;
     [SerializeField] private GameObject trackedImagePref;
     [SerializeField] private LineRenderer line;
-    private GameObject navigationBase;
 
+    private GameObject navigationBase;
     private List<NavigationTarget> navigationTargets = new List<NavigationTarget>();
     private NavMeshSurface navMeshSurface;
     private NavMeshPath navMeshPath;
-    private bool pathIsReady = false; 
+    private bool pathIsReady = false;
 
+    private void OnEnable()
+    {
+        if (m_TrackedImageManager != null)
+            m_TrackedImageManager.trackedImagesChanged += OnChanged;
+    }
 
-    private void OnEnable() => m_TrackedImageManager.trackablesChanged.AddListener(OnChanged);
-
-    private void OnDisable() => m_TrackedImageManager.trackablesChanged.RemoveListener(OnChanged);
-
+    private void OnDisable()
+    {
+        if (m_TrackedImageManager != null)
+            m_TrackedImageManager.trackedImagesChanged -= OnChanged;
+    }
 
     private void Start()
     {
-       navMeshPath = new NavMeshPath();
+        navMeshPath = new NavMeshPath();
         pathIsReady = false;
-        Screen.sleepTimeout = SleepTimeout.NeverSleep; 
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
+#if UNITY_EDITOR
+        Debug.Log("Editor Mode: Press 'T' to simulate AR image detection.");
+#endif
     }
 
     void Update()
     {
-        // Ensure necessary variables are assigned before continuing
+        // Allow simulation in Editor
+#if UNITY_EDITOR
+        if (Keyboard.current.tKey.wasPressedThisFrame)
+        {
+            SimulateARImageDetection();
+        }
+#endif
+
         if (player == null)
         {
             Debug.LogError("Player (AR Camera) is not assigned!");
@@ -60,17 +77,14 @@ public class NewIndorNavigation : MonoBehaviour
             return;
         }
 
-        // Check if the first navigation target exists
         if (navigationTargets[0] == null)
         {
             Debug.LogError("The first navigation target is null.");
             return;
         }
 
-        // Calculate the path to the first navigation target
         NavMesh.CalculatePath(player.position, navigationTargets[0].transform.position, NavMesh.AllAreas, navMeshPath);
 
-        // Check if the path is complete
         if (navMeshPath.status == NavMeshPathStatus.PathComplete)
         {
             if (navMeshPath.corners != null && navMeshPath.corners.Length > 0)
@@ -91,27 +105,67 @@ public class NewIndorNavigation : MonoBehaviour
         }
     }
 
-
-
-    private void OnChanged(ARTrackablesChangedEventArgs<ARTrackedImage> eventArgs)
+    private void OnChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
         foreach (var newImage in eventArgs.added)
         {
-            navigationBase = GameObject.Instantiate(trackedImagePref);
-            navigationTargets.Clear();
-            navigationTargets = navigationBase.transform.GetComponentsInChildren<NavigationTarget>().ToList();
-            navMeshSurface = navigationBase.transform.GetComponentInChildren<NavMeshSurface>();
+            if (navigationBase == null) //  Prevent multiple spawns
+            {
+                navigationBase = Instantiate(trackedImagePref);
+                navigationTargets.Clear();
+                navigationTargets = navigationBase.transform.GetComponentsInChildren<NavigationTarget>().ToList();
+                navMeshSurface = navigationBase.transform.GetComponentInChildren<NavMeshSurface>();
+            }
         }
+
         foreach (var updatedImage in eventArgs.updated)
         {
-            navigationBase.transform.SetPositionAndRotation(updatedImage.pose.position, Quaternion.Euler(0, updatedImage.pose.rotation.eulerAngles.y, 0));
-        }
-        foreach (var removedImage in eventArgs.removed)
-        {
+            if (navigationBase != null)
+            {
+                navigationBase.transform.SetPositionAndRotation(
+                    updatedImage.transform.position,
+                    Quaternion.Euler(0, updatedImage.transform.rotation.eulerAngles.y, 0)
+                );
+            }
         }
     }
 
 
+    private void SpawnTrackedImagePrefab(Vector3 position, Quaternion rotation)
+    {
+        if (trackedImagePref != null)
+        {
+            navigationBase = Instantiate(trackedImagePref, position, rotation);
+            navigationTargets.Clear();
+            navigationTargets = navigationBase.transform.GetComponentsInChildren<NavigationTarget>().ToList();
+            navMeshSurface = navigationBase.transform.GetComponentInChildren<NavMeshSurface>();
+
+            Debug.Log("Spawned Tracked Image Prefab.");
+        }
+        else
+        {
+            Debug.LogError("Tracked Image Prefab is not assigned!");
+        }
+    }
+
+#if UNITY_EDITOR
+    private void SimulateARImageDetection()
+    {
+        if (navigationBase != null) 
+        {
+            Debug.Log("Navigation prefab already exists. Skipping spawn.");
+            return;
+        }
+
+        Debug.Log("Simulating AR image detection in Editor.");
+
+        // Fake position for testing
+        Vector3 fakePosition = new Vector3(0, 0, 2);
+        Quaternion fakeRotation = Quaternion.identity;
+
+        SpawnTrackedImagePrefab(fakePosition, fakeRotation);
+    }
+#endif
 
     public void SetNavigationTarget(Transform newTarget)
     {
@@ -121,7 +175,6 @@ public class NewIndorNavigation : MonoBehaviour
             return;
         }
 
-        // Attempt to get the NavigationTarget component
         NavigationTarget targetComponent = newTarget.GetComponent<NavigationTarget>();
 
         if (targetComponent == null)
@@ -130,16 +183,10 @@ public class NewIndorNavigation : MonoBehaviour
             return;
         }
 
-        // Clear previous targets and add the new one
         navigationTargets.Clear();
         navigationTargets.Add(targetComponent);
 
-        // Log the updated target and number of targets
         Debug.Log($"Navigation target updated to: {newTarget.name}");
-        Debug.Log($"Number of navigation targets: {navigationTargets.Count}");
     }
-
-
-
-
 }
+

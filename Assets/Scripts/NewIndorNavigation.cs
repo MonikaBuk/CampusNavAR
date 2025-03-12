@@ -61,7 +61,7 @@ public class NewIndorNavigation : MonoBehaviour
 
         if (navigationTargets == null || navigationTargets.Count == 0)
         {
-            Debug.LogError("Navigation targets are not assigned!");
+           // Debug.LogError("Navigation targets are not assigned!");
             return;
         }
 
@@ -81,6 +81,13 @@ public class NewIndorNavigation : MonoBehaviour
         {
             Debug.LogError("The first navigation target is null.");
             return;
+        }
+        if (navigationBase == null) //  Prevent multiple spawns
+        {
+            navigationBase = Instantiate(trackedImagePref);
+            navigationTargets.Clear();
+            navigationTargets = navigationBase.transform.GetComponentsInChildren<NavigationTarget>().ToList();
+            navMeshSurface = navigationBase.transform.GetComponentInChildren<NavMeshSurface>();
         }
 
         NavMesh.CalculatePath(player.position, navigationTargets[0].transform.position, NavMesh.AllAreas, navMeshPath);

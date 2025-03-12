@@ -23,7 +23,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 4108545304949089821
       m_GuidHigh: 11737551080937688474
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.01, y: 0.01}
     m_SpecifySize: 1
     m_Name: FronLeftDoor
     m_Texture: {fileID: 0}
@@ -33,7 +33,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 7639333254092992171
       m_GuidHigh: 4416014298936585928
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.01, y: 0.01}
     m_SpecifySize: 1
     m_Name: Caffee
     m_Texture: {fileID: 0}
@@ -43,7 +43,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 4545409239812460469
       m_GuidHigh: 14414317778959343865
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.01, y: 0.01}
     m_SpecifySize: 1
     m_Name: FrontRightDoor
     m_Texture: {fileID: 0}

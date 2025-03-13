@@ -52,7 +52,9 @@ public class ARMarkerNavigation : MonoBehaviour
             if (destinations.ContainsKey(trackedImage.referenceImage.name))
             {
                 Debug.LogError(trackedImage.referenceImage.name);
-                player.position = destinations[trackedImage.referenceImage.name].transform.position;
+                Vector3 offset = new Vector3(0, 0, -2f); 
+                player.parent = destinations[trackedImage.referenceImage.name].transform;
+                player.localPosition = offset;
             }
         }
     }

@@ -60,7 +60,7 @@ public class SpawnableManager : MonoBehaviour
 
         ARPlane nearestPlane = FindNearestPlane();
 
-        if (nearestPlane != null)
+        if (nearestPlane != null&&  nearestPlane.alignment == PlaneAlignment.HorizontalUp)
         {
             float distanceToPlayer = Vector3.Distance(arCam.transform.position, nearestPlane.transform.position);
 

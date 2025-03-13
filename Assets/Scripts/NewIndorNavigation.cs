@@ -82,7 +82,7 @@ public class NewIndorNavigation : MonoBehaviour
             Debug.LogError("The first navigation target is null.");
             return;
         }
-        if (navigationBase == null) //  Prevent multiple spawns
+        if (navigationBase == null) 
         {
             navigationBase = Instantiate(trackedImagePref);
             navigationTargets.Clear();
@@ -116,7 +116,7 @@ public class NewIndorNavigation : MonoBehaviour
     {
         foreach (var newImage in eventArgs.added)
         {
-            if (navigationBase == null) //  Prevent multiple spawns
+            if (navigationBase == null) 
             {
                 navigationBase = Instantiate(trackedImagePref);
                 navigationTargets.Clear();
@@ -166,7 +166,6 @@ public class NewIndorNavigation : MonoBehaviour
 
         Debug.Log("Simulating AR image detection in Editor.");
 
-        // Fake position for testing
         Vector3 fakePosition = new Vector3(0, 0, 2);
         Quaternion fakeRotation = Quaternion.identity;
 

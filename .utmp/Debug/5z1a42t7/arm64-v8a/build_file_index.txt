@@ -1,2 +1,2 @@
-C:\Users\Monika\Documents\CampusNavAR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
-C:\Users\Monika\Documents\CampusNavAR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
+C:\Users\Monika\Documents\CampusNavAR\Library\PramData\AndroidApplicationController\Cache\com.unity.campusnav\gradle-project\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\Monika\Documents\CampusNavAR\Library\PramData\AndroidApplicationController\Cache\com.unity.campusnav\gradle-project\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

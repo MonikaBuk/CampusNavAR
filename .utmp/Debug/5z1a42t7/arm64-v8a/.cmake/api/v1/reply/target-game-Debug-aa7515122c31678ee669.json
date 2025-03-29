@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "C:/cpp/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/build/intermediates/cxx/Debug/m3310c4l/obj/arm64-v8a/libgame.so"
+			"path" : "C:/Users/Monika/Documents/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/build/intermediates/cxx/Debug/5z1a42t7/obj/arm64-v8a/libgame.so"
 		}
 	],
 	"backtrace" : 1,
@@ -73,12 +73,12 @@
 			[
 				{
 					"backtrace" : 4,
-					"path" : "C:/cpp/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/src/main/cpp/GameActivity"
+					"path" : "C:/Users/Monika/Documents/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/src/main/cpp/GameActivity"
 				},
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "C:/Users/monik/.gradle/caches/transforms-3/4533d298259fc52a43021fce53f5e4a9/transformed/jetified-games-activity-3.0.5/prefab/modules/game-activity_static/include"
+					"path" : "C:/Users/Monika/.gradle/caches/transforms-3/4533d298259fc52a43021fce53f5e4a9/transformed/jetified-games-activity-3.0.5/prefab/modules/game-activity_static/include"
 				}
 			],
 			"language" : "CXX",
@@ -115,7 +115,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\monik\\.gradle\\caches\\transforms-3\\4533d298259fc52a43021fce53f5e4a9\\transformed\\jetified-games-activity-3.0.5\\prefab\\modules\\game-activity_static\\libs\\android.arm64-v8a\\libgame-activity_static.a",
+				"fragment" : "C:\\Users\\Monika\\.gradle\\caches\\transforms-3\\4533d298259fc52a43021fce53f5e4a9\\transformed\\jetified-games-activity-3.0.5\\prefab\\modules\\game-activity_static\\libs\\android.arm64-v8a\\libgame-activity_static.a",
 				"role" : "libraries"
 			},
 			{

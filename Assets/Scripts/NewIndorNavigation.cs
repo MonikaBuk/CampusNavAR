@@ -17,7 +17,6 @@ public class NewIndorNavigation : MonoBehaviour
     private List<NavigationTarget> navigationTargets = new List<NavigationTarget>();
     private NavMeshSurface navMeshSurface;
     private NavMeshPath navMeshPath;
-    private bool pathIsReady = false;
 
     private void OnEnable()
     {
@@ -34,25 +33,11 @@ public class NewIndorNavigation : MonoBehaviour
     private void Start()
     {
         navMeshPath = new NavMeshPath();
-        pathIsReady = false;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-
-#if UNITY_EDITOR
-        Debug.Log("Editor Mode: Press 'T' to simulate AR image detection.");
-#endif
     }
 
     void Update()
     {
-        // Allow simulation in Editor
-#if UNITY_EDITOR
-        if (Keyboard.current.tKey.wasPressedThisFrame)
-        {
-            SimulateARImageDetection();
-        }
-#endif
-
-        // Check for null references to prevent further execution if needed
         if (player == null)
         {
             Debug.LogError("Player (AR Camera) is not assigned!");
@@ -83,7 +68,6 @@ public class NewIndorNavigation : MonoBehaviour
             return;
         }
 
-        // Initialize navigation base if necessary
         if (navigationBase == null)
         {
             navigationBase = Instantiate(trackedImagePref);
@@ -94,16 +78,13 @@ public class NewIndorNavigation : MonoBehaviour
 
         NavMesh.CalculatePath(player.position, navigationTargets[0].transform.position, NavMesh.AllAreas, navMeshPath);
 
-        // Check if the path is calculated correctly
         if (navMeshPath.status == NavMeshPathStatus.PathComplete && navMeshPath.corners.Length > 0)
         {
-            // Set the LineRenderer to display the path
             line.positionCount = navMeshPath.corners.Length;
             line.SetPositions(navMeshPath.corners);
         }
         else
         {
-            // If no valid path is found, reset the LineRenderer
             Debug.LogWarning("No valid path found or path corners are empty.");
             line.positionCount = 0;
         }
@@ -112,17 +93,23 @@ public class NewIndorNavigation : MonoBehaviour
     {
         foreach (var newImage in eventArgs.added)
         {
+         
+
             if (navigationBase == null)
             {
-                navigationBase = Instantiate(trackedImagePref);
-                navigationTargets.Clear();
-                navigationTargets = navigationBase.transform.GetComponentsInChildren<NavigationTarget>().ToList(); 
-                navMeshSurface = navigationBase.transform.GetComponentInChildren<NavMeshSurface>();
+                SpawnTrackedImagePrefab(newImage.transform.position, newImage.transform.rotation);
+
+                if (navMeshSurface != null)
+                {
+                   // navMeshSurface.BuildNavMesh();
+                    UpdateNavigationPath();
+                }
             }
         }
 
         foreach (var updatedImage in eventArgs.updated)
         {
+            // Only update the navigation base position, no need to rebuild the entire NavMesh
             if (navigationBase != null)
             {
                 navigationBase.transform.SetPositionAndRotation(
@@ -132,6 +119,7 @@ public class NewIndorNavigation : MonoBehaviour
             }
         }
     }
+
 
     private void SpawnTrackedImagePrefab(Vector3 position, Quaternion rotation)
     {
@@ -150,24 +138,6 @@ public class NewIndorNavigation : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
-    private void SimulateARImageDetection()
-    {
-        if (navigationBase != null)
-        {
-            Debug.Log("Navigation prefab already exists. Skipping spawn.");
-            return;
-        }
-
-        Debug.Log("Simulating AR image detection in Editor.");
-
-        Vector3 fakePosition = new Vector3(0, 0, 2);
-        Quaternion fakeRotation = Quaternion.identity;
-
-        SpawnTrackedImagePrefab(fakePosition, fakeRotation);
-    }
-#endif
-
     public void SetNavigationTarget(Transform newTarget)
     {
         if (newTarget == null)
@@ -175,7 +145,6 @@ public class NewIndorNavigation : MonoBehaviour
             Debug.LogWarning("Clearing navigation target.");
             navigationTargets.Clear();
             line.positionCount = 0; // Clear the path line
-            pathIsReady = false;
             return;
         }
 
@@ -191,8 +160,6 @@ public class NewIndorNavigation : MonoBehaviour
         navigationTargets.Add(targetComponent);
 
         Debug.Log($"Navigation target updated to: {newTarget.name}");
-
-        // Force update the path to the new target immediately
         UpdateNavigationPath();
     }
 

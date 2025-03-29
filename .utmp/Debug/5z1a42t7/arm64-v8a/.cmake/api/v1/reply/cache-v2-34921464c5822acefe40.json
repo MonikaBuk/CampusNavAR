@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/cpp/CampusNavAR/.utmp/Debug/m3310c4l/arm64-v8a"
+			"value" : "c:/Users/Monika/Documents/CampusNavAR/.utmp/Debug/5z1a42t7/arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -599,7 +599,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:\\cpp\\CampusNavAR\\.utmp\\Debug\\m3310c4l\\prefab\\arm64-v8a\\prefab"
+			"value" : "C:\\Users\\Monika\\Documents\\CampusNavAR\\.utmp\\Debug\\5z1a42t7\\prefab\\arm64-v8a\\prefab"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -659,7 +659,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/cpp/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/src/main/cpp"
+			"value" : "C:/Users/Monika/Documents/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/src/main/cpp"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -695,7 +695,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:\\cpp\\CampusNavAR\\Library\\PramData\\AndroidApplicationController\\Cache\\com.unity.campusnav\\gradle-project\\unityLibrary\\build\\intermediates\\cxx\\Debug\\m3310c4l\\obj\\arm64-v8a"
+			"value" : "C:\\Users\\Monika\\Documents\\CampusNavAR\\Library\\PramData\\AndroidApplicationController\\Cache\\com.unity.campusnav\\gradle-project\\unityLibrary\\build\\intermediates\\cxx\\Debug\\5z1a42t7\\obj\\arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -967,7 +967,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:\\cpp\\CampusNavAR\\Library\\PramData\\AndroidApplicationController\\Cache\\com.unity.campusnav\\gradle-project\\unityLibrary\\build\\intermediates\\cxx\\Debug\\m3310c4l\\obj\\arm64-v8a"
+			"value" : "C:\\Users\\Monika\\Documents\\CampusNavAR\\Library\\PramData\\AndroidApplicationController\\Cache\\com.unity.campusnav\\gradle-project\\unityLibrary\\build\\intermediates\\cxx\\Debug\\5z1a42t7\\obj\\arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1239,7 +1239,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/cpp/CampusNavAR/.utmp/Debug/m3310c4l/arm64-v8a"
+			"value" : "C:/Users/Monika/Documents/CampusNavAR/.utmp/Debug/5z1a42t7/arm64-v8a"
 		},
 		{
 			"name" : "Unity_IS_TOP_LEVEL",
@@ -1263,7 +1263,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/cpp/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/src/main/cpp"
+			"value" : "C:/Users/Monika/Documents/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/src/main/cpp"
 		},
 		{
 			"name" : "game-activity_DIR",
@@ -1275,7 +1275,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/cpp/CampusNavAR/.utmp/Debug/m3310c4l/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/game-activity"
+			"value" : "C:/Users/Monika/Documents/CampusNavAR/.utmp/Debug/5z1a42t7/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/game-activity"
 		},
 		{
 			"name" : "game_BINARY_DIR",
@@ -1287,7 +1287,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/cpp/CampusNavAR/.utmp/Debug/m3310c4l/arm64-v8a/GameActivity"
+			"value" : "C:/Users/Monika/Documents/CampusNavAR/.utmp/Debug/5z1a42t7/arm64-v8a/GameActivity"
 		},
 		{
 			"name" : "game_IS_TOP_LEVEL",
@@ -1323,7 +1323,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/cpp/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/src/main/cpp/GameActivity"
+			"value" : "C:/Users/Monika/Documents/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/src/main/cpp/GameActivity"
 		}
 	],
 	"kind" : "cache",

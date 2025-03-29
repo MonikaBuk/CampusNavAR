@@ -1,2 +1,0 @@
-C:\cpp\CampusNavAR\Library\PramData\AndroidApplicationController\Cache\com.unity.campusnav\gradle-project\unityLibrary\src\main\cpp\CMakeLists.txt
-C:\cpp\CampusNavAR\Library\PramData\AndroidApplicationController\Cache\com.unity.campusnav\gradle-project\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

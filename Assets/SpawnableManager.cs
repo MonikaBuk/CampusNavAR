@@ -70,7 +70,7 @@ public class SpawnableManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Player is too far! Move closer to spawn the object.");
+                Debug.LogError("Player is too far! Move closer to spawn the object.");
             }
         }
     }
@@ -79,7 +79,7 @@ public class SpawnableManager : MonoBehaviour
     {
         if (!m_RaycastManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), m_Hits, TrackableType.PlaneEstimated))
         {
-            Debug.LogError("Raycast failed! No valid hit on any AR Plane.");
+            //Debug.LogError("Raycast failed! No valid hit on any AR Plane.");
             return null;
         }
 
@@ -105,30 +105,24 @@ public class SpawnableManager : MonoBehaviour
     {
         if (spawnedObject == null)
         {
-            // Get the direction from object to player (AR camera)
             Vector3 directionToPlayer = arCam.transform.position;
-            directionToPlayer.y = 0; // Keep the object upright
+            directionToPlayer.y = 0; 
 
-            // Check if the direction is valid to avoid errors
             if (directionToPlayer != Vector3.zero)
             {
-                // Create rotation to look at the player
                 Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
 
-                // Instantiate the object with this rotation
                 spawnedObject = Instantiate(spawnablePrefab, position, lookRotation);
                 spawnedObject.transform.LookAt(directionToPlayer);
                 
             }
             else
             {
-                // Fallback if the direction is zero (which should be rare)
                 spawnedObject = Instantiate(spawnablePrefab, position, Quaternion.identity);
             }
 
             Debug.Log("Spawned Object at: " + position + " Facing Camera.");
 
-            // Attach to the AR plane
             if (plane != null)
             {
                 spawnedObject.transform.SetParent(plane.transform);

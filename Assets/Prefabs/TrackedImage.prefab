@@ -820,7 +820,8 @@ Transform:
   m_LocalPosition: {x: -22.03, y: 0, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3197049662652880615}
   m_Father: {fileID: 2054089038403912045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &416347987734604154
@@ -12455,8 +12456,7 @@ Transform:
   m_LocalPosition: {x: -28.71, y: 0, z: 6.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3197049662652880615}
+  m_Children: []
   m_Father: {fileID: 2054089038403912045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5523044328028543137
@@ -22973,7 +22973,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 928544180581064468}
+    m_TransformParent: {fileID: 8388993665806185723}
     m_Modifications:
     - target: {fileID: 4130319797142624247, guid: 8c2e2d5fad9f6cf4b90af65c35029ae7,
         type: 3}
@@ -23029,6 +23029,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580199403807898363, guid: 8c2e2d5fad9f6cf4b90af65c35029ae7,
+        type: 3}
+      propertyPath: spawnDistanceThreshold
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

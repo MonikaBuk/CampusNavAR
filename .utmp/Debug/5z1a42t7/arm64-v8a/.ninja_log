@@ -1,10 +1,10 @@
 # ninja log v5
-93	1319	7649936911538173	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	9f97861b7c3c0b85
-50	1326	7649936911638192	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	628c8ed46e6708d4
-37	1329	7649936911628195	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	9354e802a5fd19c7
-18	1385	7649936912260001	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	cff26fe8430c81c2
-118	1444	7649936912902310	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	545c962ef0196bcd
-1	1481	7649936913263227	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	d84f8f503cdb8895
-77	1490	7649936913373254	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	62d70b95fd9f74b
-140	1564	7649936914144685	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8f144350b31bc101
-1565	1736	7649936915768258	C:/Users/Monika/Documents/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/build/intermediates/cxx/Debug/5z1a42t7/obj/arm64-v8a/libgame.so	5985ae6eda07def0
+25	684	7650770070175887	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	9f97861b7c3c0b85
+10	688	7650770070205893	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	9354e802a5fd19c7
+47	691	7650770070245912	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	628c8ed46e6708d4
+54	707	7650770070421711	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8f144350b31bc101
+61	722	7650770070583151	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	545c962ef0196bcd
+1	731	7650770070673221	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	cff26fe8430c81c2
+34	784	7650770071184025	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	62d70b95fd9f74b
+17	818	7650770071524284	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	d84f8f503cdb8895
+819	963	7650770072919608	C:/Users/Monika/Documents/CampusNavAR/Library/PramData/AndroidApplicationController/Cache/com.unity.campusnav/gradle-project/unityLibrary/build/intermediates/cxx/Debug/5z1a42t7/obj/arm64-v8a/libgame.so	5985ae6eda07def0

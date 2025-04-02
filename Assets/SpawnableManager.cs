@@ -1,16 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
 public class SpawnableManager : MonoBehaviour
 {
-    [SerializeField] private ARRaycastManager m_RaycastManager;
-    [SerializeField] private ARPlaneManager m_PlaneManager; // Now correctly an ARPlaneManager
     [SerializeField] private GameObject spawnablePrefab;
-
+    private ARRaycastManager raycastManager;
+    private ARPlaneManager planeManager;
     private Camera arCam;
     private GameObject spawnedObject;
+    private List<ARRaycastHit> hits = new List<ARRaycastHit>();
+
 
     [SerializeField] private float spawnDistanceThreshold = 1.5f;
     private List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
@@ -19,119 +21,60 @@ public class SpawnableManager : MonoBehaviour
     {
         arCam = Camera.main;
 
-        if (m_RaycastManager == null)
+        // Get the AR Raycast Manager and Plane Manager from XR Origin
+        GameObject xrOrigin = GameObject.Find("XR Origin (Mobile AR)");
+        if (xrOrigin != null)
         {
-            GameObject xrOrigin = GameObject.Find("XR Origin (Mobile AR)");
-            if (xrOrigin != null)
-            {
-                m_RaycastManager = xrOrigin.GetComponent<ARRaycastManager>();
-            }
+            raycastManager = xrOrigin.GetComponent<ARRaycastManager>();
+            planeManager = xrOrigin.GetComponent<ARPlaneManager>();
         }
 
-        if (m_PlaneManager == null)
+        if (raycastManager == null || planeManager == null)
         {
-            GameObject xrOrigin = GameObject.Find("XR Origin (Mobile AR)");
-            if (xrOrigin != null)
-            {
-                m_PlaneManager = xrOrigin.GetComponent<ARPlaneManager>(); // Get the ARPlaneManager
-            }
-        }
-
-        if (m_RaycastManager == null)
-        {
-            Debug.LogError("ARRaycastManager not found! Make sure it's in the scene and assigned.");
-        }
-
-        if (m_PlaneManager == null)
-        {
-            Debug.LogError("ARPlaneManager not found! Make sure it's in the scene.");
+            Debug.LogError("Missing AR Managers on XR Origin!");
+            return;
         }
     }
 
     void Update()
     {
-        if (spawnedObject != null) return; // Prevent multiple spawns
+        // Only spawn if there isn't an object already
+        if (spawnedObject != null) return;
 
-        if (m_RaycastManager == null || m_PlaneManager == null)
+        // Cast a ray from the center of the screen
+        Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
+
+        if (raycastManager.Raycast(screenCenter, hits, TrackableType.PlaneWithinPolygon))
         {
-            Debug.LogError("ARRaycastManager or ARPlaneManager is missing!");
-            return;
-        }
+            // Get the closest hit
+            Pose hitPose = hits[0].pose;
 
-        ARPlane nearestPlane = FindNearestPlane();
+            // Get the plane from the hit
+            ARPlane plane = planeManager.GetPlane(hits[0].trackableId);
 
-        if (nearestPlane != null&&  nearestPlane.alignment == PlaneAlignment.HorizontalUp)
-        {
-            float distanceToPlayer = Vector3.Distance(arCam.transform.position, nearestPlane.transform.position);
-
-            if (distanceToPlayer <= spawnDistanceThreshold)
+            if (plane != null && plane.alignment == PlaneAlignment.HorizontalUp)
             {
-                SpawnPrefab(nearestPlane.transform.position, nearestPlane);
-            }
-            else
-            {
-                Debug.LogError("Player is too far! Move closer to spawn the object.");
-            }
-        }
-    }
+                // Calculate the distance between the camera and the hit point
+                float distanceToPlane = Vector3.Distance(arCam.transform.position, hitPose.position);
 
-    private ARPlane FindNearestPlane()
-    {
-        if (!m_RaycastManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), m_Hits, TrackableType.PlaneEstimated))
-        {
-            //Debug.LogError("Raycast failed! No valid hit on any AR Plane.");
-            return null;
-        }
+                if (distanceToPlane <= spawnDistanceThreshold)
+                {
+                    // Spawn the prefab at the hit position
+                    spawnedObject = Instantiate(spawnablePrefab, hitPose.position, Quaternion.identity);
+                    Debug.Log("Spawned object at: " + hitPose.position);
 
-        Pose hitPose = m_Hits[0].pose;
-        float closestDistance = Mathf.Infinity;
-        ARPlane nearestPlane = null;
+                    // Make the object look at the camera
+                    spawnedObject.transform.LookAt(new Vector3(arCam.transform.position.x, hitPose.position.y, arCam.transform.position.z));
 
-        foreach (var plane in m_PlaneManager.trackables)
-        {
-            float distance = Vector3.Distance(hitPose.position, plane.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                nearestPlane = plane;
-            }
-        }
-
-        return nearestPlane;
-    }
-
-
-    private void SpawnPrefab(Vector3 position, ARPlane plane)
-    {
-        if (spawnedObject == null)
-        {
-            Vector3 directionToPlayer = arCam.transform.position;
-            directionToPlayer.y = 0; 
-
-            if (directionToPlayer != Vector3.zero)
-            {
-                Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-
-                spawnedObject = Instantiate(spawnablePrefab, position, lookRotation);
-                spawnedObject.transform.LookAt(directionToPlayer);
-                
-            }
-            else
-            {
-                spawnedObject = Instantiate(spawnablePrefab, position, Quaternion.identity);
-            }
-
-            Debug.Log("Spawned Object at: " + position + " Facing Camera.");
-
-            if (plane != null)
-            {
-                spawnedObject.transform.SetParent(plane.transform);
-                Debug.Log("Attached Spawned Object to AR Plane.");
+                    // Attach the spawned object to the plane for stability
+                    spawnedObject.transform.SetParent(plane.transform);
+                }
+                else
+                {
+                    Debug.LogError("Too far from the plane to spawn! Move closer.");
+                }
             }
         }
     }
-
-
-
-
 }
+

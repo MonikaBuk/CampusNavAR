@@ -144,7 +144,7 @@ public class NewIndorNavigation : MonoBehaviour
         {
             Debug.LogWarning("Clearing navigation target.");
             navigationTargets.Clear();
-            line.positionCount = 0; // Clear the path line
+            line.positionCount = 0; 
             return;
         }
 
